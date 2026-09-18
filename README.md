@@ -26,7 +26,8 @@
 **This repository contains no product source code.** It is Blakcat's issue
 tracker and release channel.
 
-> **Report a valid bug, or a suggestion we adopt, and get one month of membership free.**
+> [!TIP]
+> ### 🎁 Report a valid bug, or a suggestion we adopt — get one month of membership free.
 
 ## Why Blakcat
 
