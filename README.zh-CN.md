@@ -63,7 +63,6 @@
 Blakcat 的传输层基于 [Xray-core](https://github.com/XTLS/Xray-core)（MPL-2.0）构建。
 我们对其做的修改依 MPL-2.0 §3.2 公开于
 [blakcat-app/xray-core](https://github.com/blakcat-app/xray-core)。
-完整的第三方组件与许可证清单在 App 内「设置 → 关于 → 开源许可」。
 
 ## 链接
 

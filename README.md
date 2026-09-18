@@ -65,14 +65,12 @@ subscription, slow speeds) Telegram or email will answer you much faster.
 
 Blakcat's transport layer is built on [Xray-core](https://github.com/XTLS/Xray-core)
 (MPL-2.0). Our modifications are published under MPL-2.0 §3.2 at
-[blakcat-app/xray-core](https://github.com/blakcat-app/xray-core). The full
-third-party licence inventory is in the app under Settings → About → Open Source Licences.
+[blakcat-app/xray-core](https://github.com/blakcat-app/xray-core).
 
 ## Links
 
 - [Website](https://blakcat.app)
 - [FAQ](FAQ.md)
-- [Privacy Policy](https://blakcat.app/privacy) · [Terms of Service](https://blakcat.app/terms)
 - [Issues](../../issues) · [Discussions](../../discussions)
 - support@blakcat.app
 
