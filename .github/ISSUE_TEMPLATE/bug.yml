@@ -1,0 +1,112 @@
+name: 🐛 Bug 报告 / Bug report
+description: 报告一个可复现的问题 / Report a reproducible problem
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 什么算 Bug / What belongs here
+
+        **能写出复现步骤、让别人照着做也能出现的问题。**
+        A problem you can describe step by step, so someone else can reproduce it.
+
+        算 / Yes: 连上了但没网、唤醒后不自动重连、切换网络后连接不恢复、
+        某个节点每次都连不上而其他正常、智能分流判断错误、崩溃或界面卡死。
+
+        不算 / No: 登录不上、订阅到期、设备数满了、速度慢、某个网站打不开、
+        单个节点临时故障、不知道怎么安装 —— 这些请走
+        [Telegram](https://t.me/blakcat_support) 或 support@blakcat.app，会快很多。
+
+        ---
+
+        ### ⚠️ 提交前请注意 / Before you submit
+
+        **Issue 是公开的，所有人可见。** 请勿粘贴包含以下内容的日志或截图：
+        节点地址、服务器 IP、账号邮箱、订阅令牌、密钥、UUID。
+        需要提供这类信息时，请发送至 support@blakcat.app 或 [@blakcat_support](https://t.me/blakcat_support)。
+
+        **Issues are public.** Do not paste node addresses, server IPs, account
+        emails, tokens, keys or UUIDs. Send those to support@blakcat.app or
+        [@blakcat_support](https://t.me/blakcat_support) instead.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 确认事项 / Preflight
+      options:
+        - label: 我已升级到最新版本，问题仍然存在 / I am on the latest version and the problem persists
+          required: true
+        - label: 我搜索过已有 Issue，没有重复 / I searched existing issues for duplicates
+          required: true
+        - label: 我的描述中不包含节点地址、IP、账号或密钥 / My report contains no node addresses, IPs, accounts or keys
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Blakcat 版本 / Version
+      description: 在「设置 → 关于」中查看 / Settings → About
+      placeholder: "1.2.3 (456)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 平台 / Platform
+      options:
+        - iOS
+        - Android
+        - Windows
+        - macOS
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: 系统版本 / OS version
+      placeholder: "macOS 15.2 / Windows 11 23H2 / iOS 18.3 / Android 15"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 连接模式 / Connection mode
+      options:
+        - 智能分流 / Smart routing
+        - 全局 / Global
+        - 直连 / Direct
+        - 不确定 / Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 问题描述 / What happened
+      description: 实际发生了什么，你期望发生什么 / What happened, and what you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      placeholder: |
+        1. 打开应用
+        2. 选择节点 …
+        3. 点击连接
+        4. 出现 …
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志或截图 / Logs or screenshots
+      description: |
+        **粘贴前务必脱敏** —— 把节点地址、IP、UUID 替换为 `<redacted>`。
+        **Redact before pasting** — replace node addresses, IPs and UUIDs with `<redacted>`.
+      render: text

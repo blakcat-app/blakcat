@@ -1,0 +1,18 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📨 Telegram 支持 —— 使用问题走这里 / Telegram support — usage questions go here
+    url: https://t.me/blakcat_support
+    about: >-
+      安装、连不上、账号、订阅等使用问题，以及需要提供含节点地址或账号的日志时，
+      请走 Telegram，比开 Issue 更快。
+      Setup, connection, account and billing questions — and any log containing
+      node addresses or account details — belong here, not in a public issue.
+  - name: 📧 邮件支持 / Email support
+    url: mailto:support@blakcat.app
+    about: 不用 Telegram 的话发邮件。/ If you don't use Telegram.
+  - name: 💡 功能建议与讨论 / Feature requests & discussion
+    url: https://github.com/blakcat-app/blakcat/discussions
+    about: 想要某个功能，或想讨论产品方向。/ Ideas and product discussion.
+  - name: 🔒 安全漏洞 / Security vulnerability
+    url: https://github.com/blakcat-app/blakcat/security/policy
+    about: 请勿通过公开 Issue 报告安全漏洞。/ Do not report vulnerabilities in a public issue.
