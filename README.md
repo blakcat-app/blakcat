@@ -26,6 +26,8 @@
 **This repository contains no product source code.** It is Blakcat's issue
 tracker and release channel.
 
+> **Report a valid bug, or a suggestion we adopt, and get one month of membership free.**
+
 ## Why Blakcat
 
 - 🔒 **Always secure.** Café, hotel, and airport Wi-Fi all become safe to use. Your traffic is encrypted the whole way — nobody in between can see where you go.

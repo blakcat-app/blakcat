@@ -5,6 +5,9 @@ body:
   - type: markdown
     attributes:
       value: |
+        **被采纳的建议赠送 1 个月会员。**
+        **A suggestion we adopt earns you one month of membership.**
+
         想讨论而不是正式提案？欢迎先到 [Discussions](../../discussions)。
         Want to discuss rather than formally propose? Start in [Discussions](../../discussions).
 

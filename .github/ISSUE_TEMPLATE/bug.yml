@@ -5,6 +5,11 @@ body:
   - type: markdown
     attributes:
       value: |
+        **提交有效 Bug 赠送 1 个月会员。**
+        **A valid bug report earns you one month of membership.**
+
+        ---
+
         ### 什么算 Bug / What belongs here
 
         **能写出复现步骤、让别人照着做也能出现的问题。**
