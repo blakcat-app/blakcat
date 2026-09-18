@@ -27,7 +27,7 @@
 tracker and release channel.
 
 > [!TIP]
-> ### 🎁 Report a valid bug, or a suggestion we adopt — get one month of membership free.
+> **🎁 Report a valid bug, or a suggestion we adopt — get one month of membership free.**
 
 ## Why Blakcat
 
