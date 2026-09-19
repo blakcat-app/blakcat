@@ -1,0 +1,92 @@
+# Mirrors a published build to this repository's Releases.
+#
+# Builds happen on a Mac (they need Apple signing), not here, and the canonical
+# download stays blakcat.app. This only fetches what that site is already
+# serving, so it cannot publish something users can't get anywhere else, and it
+# needs no credentials beyond the token GitHub hands the job.
+#
+# Run it after scripts/publish-release.sh in the private repo has put the new
+# installers live. Platforms that 404 are skipped, so a version with no macOS
+# build still publishes the rest.
+
+name: Mirror release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version, e.g. 1.0.6. Leave empty to read it off the Windows installer's filename."
+        required: false
+      prerelease:
+        description: "Mark as pre-release"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch what blakcat.app is serving
+        id: fetch
+        run: |
+          set -euo pipefail
+          mkdir -p dist && cd dist
+          for p in win android mac; do
+            url=$(curl -fsS -o /dev/null -w '%{redirect_url}' "https://blakcat.app/download/file/$p" || true)
+            if [ -z "$url" ]; then
+              echo "::notice::no $p build published, skipping"
+              continue
+            fi
+            name=$(basename "$url")
+            echo "downloading $name"
+            curl -fsSL -o "$name" "https://blakcat.app/download/file/$p"
+            [ -s "$name" ] || { echo "::error::$name came back empty"; exit 1; }
+          done
+          ls -1 | grep . || { echo "::error::nothing to publish"; exit 1; }
+
+          version="${{ inputs.version }}"
+          if [ -z "$version" ]; then
+            # Blakcat-Setup-1.0.6.exe -> 1.0.6
+            version=$(ls Blakcat-Setup-*.exe 2>/dev/null | head -1 \
+                      | sed -E 's/^Blakcat-Setup-(.+)\.exe$/\1/')
+          fi
+          [ -n "$version" ] || { echo "::error::could not determine a version"; exit 1; }
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Checksums
+        run: |
+          set -euo pipefail
+          cd dist && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.fetch.outputs.version }}
+        run: |
+          set -euo pipefail
+          {
+            echo "Download for your platform at [blakcat.app](https://blakcat.app)."
+            echo
+            echo "These files are mirrors of what that site serves. Verify one with:"
+            echo
+            echo '```sh'
+            echo "sha256sum -c SHA256SUMS.txt --ignore-missing"
+            echo '```'
+            echo
+            echo '```'
+            cat dist/SHA256SUMS.txt
+            echo '```'
+          } > notes.md
+
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "v$VERSION exists — replacing its assets"
+            gh release upload "v$VERSION" dist/* --clobber
+            gh release edit "v$VERSION" --notes-file notes.md
+          else
+            gh release create "v$VERSION" dist/* \
+              --title "v$VERSION" --notes-file notes.md \
+              ${{ inputs.prerelease && '--prerelease' || '' }}
+          fi
